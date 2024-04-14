@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Citas Médicas</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header, nav, footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            background-color: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            max-width: 20%;
+            height: 20%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Estilos específicos */
+        #formulario {
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        #formulario label {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        #formulario input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #botones {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        #botones button {
+            background-color: #007bff;
+            color: white;
+        }
+
+        #botones button:last-child {
+            background-color: #28a745;
+        }
+
+        #calendario {
+            display: none;
+        }
+
+        #lista-especialistas {
+            display: none;
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        #lista-especialistas li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #cita-agendada {
+            display: none;
+            text-align: center;
+        }
+
+        #cita-agendada p {
+            font-size: 18px;
+            font-weight: bold;
+            color: #28a745;
+        }
+    </style>
+    <script>
+        function mostrarSeccion(seccionId) {
+            var secciones = document.querySelectorAll('section');
+            secciones.forEach(function(seccion) {
+                seccion.style.display = 'none';
+            });
+            document.getElementById(seccionId).style.display = 'block';
+        }
+
+        function volverAInicio() {
+            mostrarSeccion('portada');
+        }
+
+        function mostrarCalendario() {
+            mostrarSeccion('calendario');
+        }
+
+        function mostrarListaEspecialistas() {
+            mostrarSeccion('lista-especialistas');
+        }
+
+        function mostrarCitaAgendada() {
+            mostrarSeccion('cita-agendada');
+        }
+
+        function registrarUsuario() {
+            // Lógica para registrar nuevo usuario
+            alert('Registro completo');
+            mostrarSeccion('portada');
+        }
+
+        function iniciarSesion() {
+            // Lógica para iniciar sesión
+            alert('Inicio de sesión exitoso');
+            mostrarSeccion('busqueda-desc');
+        }
+
+        function agendarCita() {
+            // Lógica para agendar cita
+            mostrarCalendario();
+        }
+
+        function seleccionarEspecialista() {
+            // Lógica para seleccionar especialista
+            mostrarListaEspecialistas();
+        }
+
+        function finalizarProceso() {
+            // Lógica para finalizar proceso de agendamiento
+            alert('Cita asignada correctamente');
+            mostrarSeccion('portada');
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Bienvenido a la Plataforma de Citas Médicas</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="mostrarSeccion('portada')">Inicio</a></li>
+            <li><a href="#" onclick="mostrarSeccion('busqueda-desc')">Buscar Especialistas</a></li>
+            <li><a href="#" onclick="mostrarSeccion('agendamiento-desc')">Agendar Citas</a></li>
+            <li><a href="#" onclick="mostrarSeccion('gestion-desc')">Gestión de Citas</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="portada">
+            <img src="Imagen5.jpg" alt="Portada">
+            <div id="formulario">
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" name="usuario" required>
+
+                <label for="clave">Clave:</label>
+                <input type="password" id="clave" name="clave" required>
+
+                <div id="botones">
+                    <button id="iniciar-sesion" onclick="iniciarSesion()">Iniciar Sesión</button>
+                    <button id="registro-nuevo" onclick="mostrarSeccion('registro-desc')">Registro Nuevo Usuario</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="busqueda-desc">
+            <h2>Búsqueda de Especialistas</h2>
+            <p>Encuentra a los mejores especialistas según tu necesidad y revisa sus horarios de disponibilidad.</p>
+            <img src="Imagen2.jpg" alt="Imagen Búsqueda de Especialistas">
+            <div id="volver">
+                <button onclick="volverAInicio()">Volver a Inicio</button>
+            </div>
+        </section>
+
+        <section id="agendamiento-desc">
+            <h2>Agendamiento de Citas</h2>
+            <p>Programa tus citas médicas con facilidad, elige la fecha y hora que más te convenga.</p>
+            <img src="Imagen3.jpg" alt="Imagen Agendamiento de Citas">
+            <div id="volver">
+                <button onclick="volverAInicio()">Volver a Inicio</button>
+            </div>
+            <div id="calendario">
+                <!-- Aquí va el código del calendario -->
+                Calendario
+                <button onclick="seleccionarEspecialista()">Siguiente</button>
+            </div>
+        </section>
+
+        <section id="gestion-desc">
+            <h2>Gestión de Citas</h2>
+            <p>Administra tus citas médicas, accede a tu historial médico y mantente informado sobre tu salud.</p>
+            <img src="Imagen4.jpg" alt="Imagen Gestión de Citas">
+            <div id="volver">
+                <button onclick="volverAInicio()">Volver a Inicio</button>
+            </div>
+            <div id="cita-agendada">
+                <p>Su cita está agendada para el [Fecha] a las [Hora].</p>
+                <button onclick="finalizarProceso()">Finalizar Proceso</button>
+            </div>
+        </section>
+
+        <section id="registro-desc">
+            <h2>Registro de Nuevo Usuario</h2>
+            <p>Registra una nueva cuenta para acceder a todas las funciones de la plataforma.</p>
+            <img src="Imagen5.jpg" alt="Imagen Registro de Nuevo Usuario">
+            <label for="nuevo-usuario">Nuevo Usuario:</label>
+            <input type="text" id="nuevo-usuario" name="nuevo-usuario" required>
+
+            <label for="nueva-clave">Nueva Clave:</label>
+            <input type="password" id="nueva-clave" name="nueva-clave" required>
+
+            <button id="registro-nuevo-usuario" type="button" onclick="registrarUsuario()">Registrar Usuario Nuevo</button>
+            <div id="volver">
+                <button onclick="volverAInicio()">Volver a Inicio</button>
+                ss
+                
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2023 Plataforma de Citas Médicas</p>
+    </footer>
+</body>
+</html>
